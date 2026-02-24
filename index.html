@@ -135,7 +135,9 @@
   <!-- LIGHTBOX -->
   <div class="lightbox" id="lightbox" onclick="closeLightbox()">
     <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
-    <img class="lightbox-img" id="lightbox-img" src="" alt="">
+    <button class="lightbox-prev" onclick="event.stopPropagation(); shiftLightbox(-1)">&#8249;</button>
+    <img class="lightbox-img" id="lightbox-img" src="" alt="" onclick="event.stopPropagation()">
+    <button class="lightbox-next" onclick="event.stopPropagation(); shiftLightbox(1)">&#8250;</button>
     <p class="lightbox-label" id="lightbox-label"></p>
   </div>
 
@@ -171,13 +173,27 @@
     });
 
     // Lightbox
-    document.querySelectorAll('.catalogue-item img').forEach(function(img) {
-      img.addEventListener('click', function() {
-        document.getElementById('lightbox-img').src = this.src;
-        document.getElementById('lightbox-label').textContent = this.closest('.catalogue-item').querySelector('.cat-label').textContent;
-        document.getElementById('lightbox').classList.add('open');
+    const catalogueItems = Array.from(document.querySelectorAll('.catalogue-item'));
+    let currentIndex = 0;
+
+    function openLightbox(index) {
+      currentIndex = index;
+      const item = catalogueItems[index];
+      document.getElementById('lightbox-img').src = item.querySelector('img').src;
+      document.getElementById('lightbox-label').textContent = item.querySelector('.cat-label').textContent;
+      document.getElementById('lightbox').classList.add('open');
+    }
+
+    catalogueItems.forEach(function(item, index) {
+      item.querySelector('img').addEventListener('click', function() {
+        openLightbox(index);
       });
     });
+
+    function shiftLightbox(direction) {
+      currentIndex = (currentIndex + direction + catalogueItems.length) % catalogueItems.length;
+      openLightbox(currentIndex);
+    }
 
     function closeLightbox() {
       document.getElementById('lightbox').classList.remove('open');
@@ -185,11 +201,8 @@
 
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') closeLightbox();
-    });
-
-    // Prevent click on image itself from closing lightbox
-    document.getElementById('lightbox-img').addEventListener('click', function(e) {
-      e.stopPropagation();
+      if (e.key === 'ArrowRight') shiftLightbox(1);
+      if (e.key === 'ArrowLeft') shiftLightbox(-1);
     });
 
     // Chinese language toggle

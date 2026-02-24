@@ -55,7 +55,7 @@ a:hover {
   grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
   grid-auto-rows: 133px;
   overflow: hidden;
-  opacity: 0.22;
+  opacity: 1;
   pointer-events: none;
 }
 
@@ -430,6 +430,29 @@ footer {
 }
 
 .lightbox-close:hover {
+  color: white;
+}
+
+.lightbox-prev,
+.lightbox-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--rule);
+  font-size: 4rem;
+  cursor: pointer;
+  padding: 0 1rem;
+  line-height: 1;
+  user-select: none;
+}
+
+.lightbox-prev { left: 0.5rem; }
+.lightbox-next { right: 0.5rem; }
+
+.lightbox-prev:hover,
+.lightbox-next:hover {
   color: white;
 }
 
