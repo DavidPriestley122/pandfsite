@@ -380,6 +380,64 @@ footer {
 }
 
 /* =============================================
+   LIGHTBOX
+   ============================================= */
+
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(20, 15, 10, 0.92);
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.lightbox.open {
+  display: flex;
+}
+
+.lightbox-img {
+  max-height: 85vh;
+  max-width: 90vw;
+  object-fit: contain;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+  cursor: default;
+}
+
+.lightbox-label {
+  color: var(--rule);
+  font-size: 0.82rem;
+  letter-spacing: 0.1em;
+  margin-top: 1rem;
+  font-family: var(--serif);
+  font-variant: small-caps;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.5rem;
+  background: none;
+  border: none;
+  color: var(--rule);
+  font-size: 2rem;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0.2rem 0.5rem;
+}
+
+.lightbox-close:hover {
+  color: white;
+}
+
+.catalogue-item img {
+  cursor: zoom-in;
+}
+
+/* =============================================
    RESPONSIVE
    ============================================= */
 

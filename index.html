@@ -132,6 +132,13 @@
     </div>
   </section>
 
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+    <img class="lightbox-img" id="lightbox-img" src="" alt="">
+    <p class="lightbox-label" id="lightbox-label"></p>
+  </div>
+
   <!-- FOOTER -->
   <footer>
     <div class="container">
@@ -161,6 +168,28 @@
       img.alt = '';
       img.loading = 'lazy';
       mosaic.appendChild(img);
+    });
+
+    // Lightbox
+    document.querySelectorAll('.catalogue-item img').forEach(function(img) {
+      img.addEventListener('click', function() {
+        document.getElementById('lightbox-img').src = this.src;
+        document.getElementById('lightbox-label').textContent = this.closest('.catalogue-item').querySelector('.cat-label').textContent;
+        document.getElementById('lightbox').classList.add('open');
+      });
+    });
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeLightbox();
+    });
+
+    // Prevent click on image itself from closing lightbox
+    document.getElementById('lightbox-img').addEventListener('click', function(e) {
+      e.stopPropagation();
     });
 
     // Chinese language toggle
