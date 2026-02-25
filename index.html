@@ -11,10 +11,7 @@
 </head>
 <body>
 
-  <!-- CATALOGUE MOSAIC BACKGROUND (populated by JS) -->
-  <div class="bg-mosaic" id="bg-mosaic" aria-hidden="true"></div>
-
-  <!-- LANGUAGE TOGGLE -->
+<!-- LANGUAGE TOGGLE -->
   <button class="zh-toggle" id="zh-toggle" onclick="toggleChinese()">中文</button>
 
   <!-- HEADER -->
@@ -153,28 +150,6 @@
   </footer>
 
   <script>
-    // Populate background mosaic
-    const catalogueFiles = [
-      '1996.jpg','1998.jpg','1999.jpg','2000.jpg','2001.jpg','2002.jpg',
-      '2003.jpg','2003b.jpg','2004.jpg','2004b.jpg','2005.jpg','2005b.jpg',
-      '2006.jpg','2006b.jpg','2007.jpg','2008b.jpg','2009.jpg','2009b.jpg',
-      '2010.jpg','2010b.jpg','2011.jpg','2012.jpg','2013.jpg','2014.jpg',
-      '2015.jpg','2016.jpg','2016b.jpg','2017.jpg','2017b.jpg','2018.jpg',
-      '2018b.jpg','2019.jpg','2020.jpg','2020b.jpg','2021a.jpg','2021b.jpg',
-      '2022.jpg','2022b.jpg','2023.jpg','2023b.jpg','2024Online.png','2024 Summer Online.png'
-    ];
-
-    const mosaic = document.getElementById('bg-mosaic');
-    // Repeat the list to fill the background more densely
-    const repeated = [...catalogueFiles, ...catalogueFiles, ...catalogueFiles];
-    repeated.forEach(function(f) {
-      const img = document.createElement('img');
-      img.src = 'images/Catalogues/' + f;
-      img.alt = '';
-      img.loading = 'lazy';
-      mosaic.appendChild(img);
-    });
-
     // Lightbox
     const catalogueItems = Array.from(document.querySelectorAll('.catalogue-item'));
     let currentIndex = 0;
