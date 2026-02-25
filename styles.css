@@ -215,6 +215,32 @@ section {
   padding: 4rem 0;
 }
 
+.closure-notice {
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mid);
+  border-left: 2px solid var(--red);
+  padding-left: 1rem;
+  margin-bottom: 2.8rem;
+  max-width: 60ch;
+}
+
+.closure-notice-zh {
+  font-family: var(--zh);
+  font-size: 0.85rem;
+  color: var(--mid);
+  border-left: 2px solid var(--red);
+  padding-left: 1rem;
+  margin-top: -2rem;
+  margin-bottom: 2.8rem;
+  display: none;
+}
+
+body.show-chinese .closure-notice-zh {
+  display: block;
+}
+
 .bilingual {
   display: grid;
   grid-template-columns: 1fr;
